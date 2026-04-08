@@ -1,23 +1,11 @@
-import { useRef, useState } from 'react';
-import styles from './HomePage.module.css';
+import { useState } from 'react';
+import styles from './FriendsPage.module.css';
 
 /* ── SVG Icons ── */
-function LogoIcon() {
+function ArrowLeftIcon() {
   return (
-    <svg
-      width="36"
-      height="36"
-      viewBox="0 0 52 52"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <ellipse cx="26" cy="30" rx="18" ry="18" fill="#D5006D" />
-      <path d="M20 47 Q22 54 26 52 Q30 54 32 47" fill="#D5006D" />
-      <circle cx="20" cy="27" r="3" fill="white" opacity="0.9" />
-      <circle cx="32" cy="27" r="3" fill="white" opacity="0.9" />
-      <path d="M20 35 Q26 40 32 35" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" />
-      <ellipse cx="26" cy="13" rx="10" ry="7" fill="#D5006D" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#212121" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
     </svg>
   );
 }
@@ -67,53 +55,57 @@ function NavBellIcon({ active }) {
   );
 }
 
-function ImagePlaceholderIcon() {
+function SearchIcon() {
   return (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="#BDBDBD" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#9E9E9E" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
     </svg>
   );
 }
 
-function InsertImageIcon() {
+function DotsIcon() {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="#D5006D" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#9E9E9E" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
     </svg>
   );
 }
 
-function ArrowRightIcon() {
+function PersonAvatarIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="#9E9E9E" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="20" cy="20" r="20" fill="#BDBDBD" />
+      <path d="M20 20c3.31 0 6-2.69 6-6s-2.69-6-6-6-6 2.69-6 6 2.69 6 6 6zm0 3c-4.01 0-12 2.01-12 6v3h24v-3c0-3.99-7.99-6-12-6z" fill="#ffffff" />
     </svg>
   );
 }
+
+function PlusIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+    </svg>
+  );
+}
+
+/* ── Mock data ── */
+const MOCK_FRIENDS = [
+  { id: 1, name: 'Gustavo Almeida', phone: '(00) 00000-0000' },
+  { id: 2, name: 'Amanda Finotti', phone: '(00) 00000-0000' },
+  { id: 3, name: 'Augusto Fonseca', phone: '(00) 00000-0000' },
+  { id: 4, name: 'Mariana Calixto', phone: '(00) 00000-0000' },
+  { id: 5, name: 'Carlos Young', phone: '(00) 00000-0000' },
+  { id: 6, name: 'Rita Teixeira', phone: '(00) 00000-0000' },
+];
 
 /* ── Main Component ── */
-export default function HomePage({ userName = 'Éder', onNavigate }) {
-  const [activeNav, setActiveNav] = useState('menu');
-  const [text, setText] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const fileInputRef = useRef(null);
+export default function FriendsPage({ onBack, onAddFriend }) {
+  const [activeNav, setActiveNav] = useState('contacts');
+  const [search, setSearch] = useState('');
 
-  function handleEncrypt() {
-    // TODO: integrate with encryption API
-    alert('Criptografar: ' + text);
-  }
-
-  function handleInsertImage() {
-    fileInputRef.current?.click();
-  }
-
-  function handleFileChange(e) {
-    const file = e.target.files?.[0];
-    if (file) {
-      // TODO: integrate with image upload API
-      setSelectedImage(file.name);
-    }
-  }
+  const filteredFriends = MOCK_FRIENDS.filter((f) =>
+    f.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className={styles.page}>
@@ -121,10 +113,10 @@ export default function HomePage({ userName = 'Éder', onNavigate }) {
 
         {/* Header */}
         <header className={styles.header}>
-          <LogoIcon />
-          <span className={styles.logoText}>
-            face<span className={styles.logoAccent}>secret</span>
-          </span>
+          <button className={styles.backBtn} onClick={onBack} aria-label="Voltar">
+            <ArrowLeftIcon />
+          </button>
+          <h1 className={styles.title}>Amigos</h1>
         </header>
 
         {/* Navigation bar */}
@@ -139,7 +131,7 @@ export default function HomePage({ userName = 'Éder', onNavigate }) {
           </button>
           <button
             className={`${styles.navBtn} ${activeNav === 'contacts' ? styles.navBtnActive : ''}`}
-            onClick={() => { setActiveNav('contacts'); onNavigate?.('friends'); }}
+            onClick={() => setActiveNav('contacts')}
             aria-label="Contatos"
             aria-current={activeNav === 'contacts' ? 'page' : undefined}
           >
@@ -171,56 +163,52 @@ export default function HomePage({ userName = 'Éder', onNavigate }) {
           </button>
         </nav>
 
-        {/* Welcome card */}
-        <div className={styles.welcomeCard}>
-          <div className={styles.welcomeImage} aria-hidden="true">
-            <ImagePlaceholderIcon />
-          </div>
-          <div className={styles.welcomeText}>
-            <p className={styles.welcomeTitle}>Seja bem vindo, {userName}!</p>
-            <p className={styles.welcomeSubtitle}>Vamos trabalhar com mais segurança?</p>
-          </div>
-        </div>
-
-        {/* Text area */}
-        <div className={styles.textAreaWrapper}>
-          <textarea
-            className={styles.textArea}
-            placeholder="Insira aqui o texto que deseja criptografar ou cole a mensagem que deseja decodificar."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            aria-label="Texto para criptografar ou decodificar"
-          />
-        </div>
-
-        {/* Bottom section */}
-        <div className={styles.bottom}>
-
-          {/* Image insert row */}
-          <button className={styles.insertImageRow} onClick={handleInsertImage} aria-label="Inserir um arquivo de imagem">
-            <InsertImageIcon />
-            <span className={styles.insertImageLabel}>
-              {selectedImage ?? 'Inserir um arquivo de imagem'}
-            </span>
-            <ArrowRightIcon />
-          </button>
-
-          {/* Hidden file input */}
+        {/* Search bar */}
+        <div className={styles.searchWrapper}>
           <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            className={styles.hiddenInput}
-            onChange={handleFileChange}
-            aria-hidden="true"
-            tabIndex={-1}
+            className={styles.searchInput}
+            type="text"
+            placeholder="Busque por um amigo..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            aria-label="Buscar amigo"
           />
-
-          {/* Encrypt button */}
-          <button className={styles.encryptButton} onClick={handleEncrypt}>
-            CRIPTOGRAFAR
-          </button>
+          <span className={styles.searchIcon}>
+            <SearchIcon />
+          </span>
         </div>
+
+        {/* Total count */}
+        <p className={styles.totalCount}>
+          Total: <strong>{filteredFriends.length}</strong>
+        </p>
+
+        {/* Friends list */}
+        <ul className={styles.friendsList} aria-label="Lista de amigos">
+          {filteredFriends.map((friend) => (
+            <li key={friend.id} className={styles.friendItem}>
+              <div className={styles.avatar}>
+                <PersonAvatarIcon />
+              </div>
+              <div className={styles.friendInfo}>
+                <span className={styles.friendName}>{friend.name}</span>
+                <span className={styles.friendPhone}>{friend.phone}</span>
+              </div>
+              <button className={styles.dotsBtn} aria-label={`Opções para ${friend.name}`}>
+                <DotsIcon />
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        {/* FAB — Add friend */}
+        <button
+          className={styles.fab}
+          onClick={onAddFriend}
+          aria-label="Adicionar novo amigo"
+        >
+          <PlusIcon />
+        </button>
 
       </div>
     </div>

@@ -1,3 +1,15 @@
+/* ── Shared design tokens ── */
+:root {
+  --primary: #D5006D;
+  --bg: #EDEDED;
+  --card-bg: #F5F5F5;
+  --text-dark: #212121;
+  --text-muted: #9E9E9E;
+  --border: #CFCFCF;
+  --white: #ffffff;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+}
+
 *,
 *::before,
 *::after {
