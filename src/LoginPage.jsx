@@ -77,7 +77,7 @@ function maskCpf(value) {
 }
 
 /* ── Main component ── */
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onLogin, onRegister }) {
   const [activeTab, setActiveTab] = useState('login');
   const [cpf, setCpf] = useState('');
   const [cpfFocused, setCpfFocused] = useState(false);
@@ -117,7 +117,7 @@ export default function LoginPage({ onLogin }) {
           </button>
           <button
             className={`${styles.tab} ${activeTab === 'register' ? styles.tabActive : ''}`}
-            onClick={() => setActiveTab('register')}
+            onClick={() => { setActiveTab('register'); onRegister?.(); }}
           >
             Cadastre-se
           </button>
