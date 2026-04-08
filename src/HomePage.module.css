@@ -1,0 +1,258 @@
+/* ── Design tokens (shared with LoginPage) ── */
+:root {
+  --primary: #D5006D;
+  --bg: #EDEDED;
+  --card-bg: #F5F5F5;
+  --text-dark: #212121;
+  --text-muted: #9E9E9E;
+  --border: #CFCFCF;
+  --white: #ffffff;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Page wrapper ── */
+.page {
+  min-height: 100vh;
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── Card ── */
+.card {
+  background-color: var(--card-bg);
+  width: 100%;
+  max-width: 420px;
+  min-height: 640px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 24px 16px;
+  background-color: var(--card-bg);
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: -0.5px;
+}
+
+.logoAccent {
+  color: var(--primary);
+}
+
+/* ── Navigation bar ── */
+.navbar {
+  display: flex;
+  border-bottom: 1.5px solid var(--border);
+  background-color: var(--card-bg);
+  padding: 4px 0;
+}
+
+.navBtn {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.15s;
+  outline: none;
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.navBtn:hover {
+  background-color: rgba(213, 0, 109, 0.06);
+}
+
+.navBtnActive {
+  background-color: rgba(213, 0, 109, 0.08);
+}
+
+/* ── Welcome card ── */
+.welcomeCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 16px 0;
+  background-color: #E0E0E0;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 90px;
+  flex-shrink: 0;
+}
+
+.welcomeImage {
+  width: 90px;
+  min-width: 90px;
+  height: 90px;
+  background-color: #BDBDBD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.welcomeText {
+  padding: 12px 12px 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.welcomeTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.welcomeSubtitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* ── Text area ── */
+.textAreaWrapper {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+}
+
+.textArea {
+  width: 100%;
+  flex: 1;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  font-family: inherit;
+  outline: none;
+  line-height: 1.55;
+}
+
+.textArea::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ── Bottom section ── */
+.bottom {
+  border-top: 1.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image insert row */
+.insertImageRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid var(--border);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  transition: background-color 0.15s;
+}
+
+.insertImageRow:hover {
+  background-color: rgba(213, 0, 109, 0.04);
+}
+
+.insertImageRow:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.insertImageLabel {
+  flex: 1;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hidden file input */
+.hiddenInput {
+  display: none;
+}
+
+/* Encrypt button */
+.encryptButton {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 18px 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s, transform 0.1s;
+  outline: none;
+}
+
+.encryptButton:hover {
+  background-color: #bf0060;
+}
+
+.encryptButton:active {
+  transform: scale(0.99);
+}
+
+.encryptButton:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -4px;
+}
+
+/* ── Responsive ── */
+@media (min-width: 480px) {
+  .card {
+    min-height: 680px;
+  }
+
+  .logoText {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .page {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  }
+
+  .card {
+    max-width: 460px;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.14);
+  }
+}
