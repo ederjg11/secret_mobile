@@ -77,7 +77,7 @@ function maskCpf(value) {
 }
 
 /* ── Main component ── */
-export default function LoginPage() {
+export default function LoginPage({ onLogin }) {
   const [activeTab, setActiveTab] = useState('login');
   const [cpf, setCpf] = useState('');
   const [cpfFocused, setCpfFocused] = useState(false);
@@ -92,6 +92,7 @@ export default function LoginPage() {
   function handleSubmit(e) {
     e.preventDefault();
     // TODO: integrate with authentication API
+    if (onLogin) onLogin();
   }
 
   return (
